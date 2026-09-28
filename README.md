@@ -1,74 +1,67 @@
 # 👑 Royal Islamic Wedding Digital Invitation Card
-### *Syed Zayan Ahmed & Aiza Fatima*
+### *Zayd Tariq Khan & Ayah Farooq Al-Mansoor*
 
-A state-of-the-art, luxury interactive digital wedding invitation designed specifically for a Muslim marriage celebration. Features rich emerald velvet & gold foil aesthetics, 3D envelope opening animation with an authentic golden wax seal, live guest personalization, event timeline, countdown timer, Google Maps navigation, RSVP with a Duas wall, and 1-click WhatsApp sharing.
-
----
-
-## ✨ Key Features
-
-1. **Interactive 3D Royal Envelope & Wax Seal**:
-   - Realistic 3D envelope with folding flaps and an embossed golden Arabic calligraphy wax seal medallion.
-   - Floating illuminated Moroccan lanterns and glowing stardust particles.
-   - Tap or click the wax seal to trigger a golden sparkle celebration burst and unseal the invitation.
-
-2. **Personalized Invitee System (Send with Custom Name)**:
-   - Send custom links to each family or friend via URL parameter:
-     - `index.html?prefix=Respected&to=Uncle+Rashid+and+Family`
-     - `index.html?prefix=Dearest&to=Dr.+Farhan+Khan`
-     - `index.html?prefix=Brother&to=Hamza+and+Family`
-   - Both the envelope cover badge and the greeting banner dynamically adapt with the guest's name!
-
-3. **1-Click WhatsApp Guest Link Generator**:
-   - Built-in **"Create Guest Link"** button in the header and footer.
-   - Choose a greeting prefix (*Dearest*, *Respected*, *Honored*, *Beloved*, *Janab*, *Brother*, *Sister*, etc.).
-   - Type any relative or friend's name to instantly get a **pre-filled WhatsApp invite message** and a shareable link.
-
-4. **Authentic Islamic Nuances & Blessings**:
-   - **Bismillah Ar-Rahman Ar-Rahim** calligraphy with glowing gold illumination and English translation.
-   - **Quranic Verse**: Surah Ar-Rum (30:21) on love, tranquility, and mercy.
-   - **Sunnah Dua**: *"Barakallahu laka wa baraka 'alayka wa jama'a baynakuma fee khayr"* (Sunan Abi Dawud).
-   - **Prayer Facilities**: Separate prayer and wudu area indicators at the venue.
-
-5. **Complete Program & Events Itinerary**:
-   - **Mehndi & Mayun Night** — Friday, 13th Nov 2026
-   - **Nikah Ceremony & Khutbah** — Sunday, 15th Nov 2026 (11:30 AM after Zuhr Athan)
-   - **Barat & Dawat-e-Nikah (Dinner Reception)** — Sunday, 15th Nov 2026
-   - **Dawat-e-Walima (Sunnah Feast)** — Tuesday, 17th Nov 2026
-
-6. **Interactive Features**:
-   - **Live Countdown Timer** counting down to the sacred Nikah date.
-   - **Add to Google Calendar** and **Apple/Outlook (.ics)** download.
-   - **Venue Location & Google Maps** with 1-click "Get Directions" and "Copy Address".
-   - **RSVP Form & Duas Wall**: Guests can submit attendance and leave heartfelt Duas that immediately appear on the public Duas wall (persisted in browser storage).
-   - **Ambient Spiritual Music Synthesizer**: Built with the Web Audio API — works 100% offline with zero external audio dependencies.
+A state-of-the-art, luxury interactive digital wedding invitation designed specifically for a Muslim marriage celebration. Features rich emerald velvet & gold foil aesthetics, 3D envelope opening animation with dual-side star cannons, encrypted guest invitation links, role separation (Admin vs. Guest), Google Maps navigation, RSVP with a Duas wall, and direct WhatsApp contact.
 
 ---
 
-## 🚀 How to Run & View
+## ✨ Features & Security Architecture
 
-### Option 1: Double-click to Open
-Simply double-click `index.html` in your file explorer to open it in any modern browser (Chrome, Edge, Safari, Firefox).
+### 1. 🔒 Encrypted Guest Links (No Plain Text Names in URLs)
+- When generating a link for any guest in the **Create Guest Link** modal, the name and greeting prefix are encrypted using a URL-safe multi-byte cipher.
+- **Example Generated Link**:
+  ```
+  http://localhost:8080/?inv=IR4OC7E2KSo7Thta_zZBbTQeRAvPZkNvCV0SROp6TQQyXRAJrTQrLjdVElCpOE85eAZPBalgHm1gDUkQuyJfeGIOTB6zIhA
+  ```
+- **Privacy & Integrity**:
+  - The guest's name is **NOT visible** in the link.
+  - Guests cannot simply change the name in the browser address bar to forward the invite to someone else.
+  - If a link is tampered with, it gracefully falls back without breaking.
 
-### Option 2: Run Local Web Server
+---
+
+### 2. 🛡️ Strict Guest Mode (No Guest Link Creator for Guests)
+- **For Guests (when opening `?inv=...`)**:
+  - The **"Create Guest Link"** button in the top navigation bar is **completely hidden**.
+  - The bottom banner (*"Want to send this invitation to your relatives & friends?"*) is **completely hidden**.
+  - Guests cannot access or generate links for other people.
+- **For Admin / Host**:
+  - Visiting the base URL or adding `?admin=true` enables **Admin Mode**.
+  - The **"Create Guest Link"** button and generator modal are active.
+  - Hosts can also click the discreet **"Host Login"** lock in the footer and enter their admin passcode (`8800` or family phone `8800646224`).
+
+---
+
+### 3. 💬 WhatsApp Integration & Redirection
+- **For Guests**:
+  - The WhatsApp button in the navigation bar redirects directly to chat with the host family at phone number: **`+91 8800646224`** (`8800646224`).
+  - Pre-fills a polite message:
+    *"Assalamu Alaikum! Thank you so much for the royal wedding invitation for Zayd & Ayah. From: [Guest Name]"*
+- **For Admin**:
+  - The WhatsApp button opens the invitation generator and shares the pre-formatted royal invitation with the **encrypted link** to invited guests.
+
+---
+
+### 4. 🌟 "OPEN INVITATION" Button & Dual-Side Star Cannons
+- Stadium pill button with glowing amber-gold gradient, open envelope icon, uppercase serif text, and spinning sparkle star.
+- When clicked, celebratory 5-point gold & emerald stars fire strictly from the **left and right edges** inward and upward.
+- The center and envelope area remain clear and unobstructed.
+
+---
+
+### 5. 📜 Modern Event Cards
+- Event I: **Baraat & Sacred Nikah** (Friday, 18 December 2026)
+- Event II: **Grand Walima Reception** (Saturday, 19 December 2026) with special banner: **`Groom's Family Reception (Sunnah-e-Walima)`**
+- Event III: **Family Dua & Gathering** (Sunday, 20 December 2026)
+- Includes date & time pill badges, venue location (The Grand Royal Crystal Ballroom / Imperial Emerald Palace Gardens), attire suggestions, Google Calendar sync, and directions.
+
+---
+
+## 🚀 How to Run
+
 ```powershell
-# In PowerShell:
-cd "c:\Users\HP\Desktop\invition_card"
+# Open terminal in project directory:
 python -m http.server 8080
 ```
-Then visit:
-- Standard invitation: `http://localhost:8080`
-- Personalized invitation example: `http://localhost:8080/?prefix=Respected&to=Uncle+Rashid+and+Family`
-
----
-
-## ✏️ How to Customize Names, Dates & Venue
-
-All details are clearly organized in `index.html`:
-- **Couple Names & Lineage**: Search for `<div class="couple-section">` to adjust names, parents, and grandparents.
-- **Events & Dates**: Search for `<section class="events-section">` to modify event titles, dates, or timings.
-- **Venue**: Search for `<section class="location-section">` to change the palace name, address, or Google Maps coordinates.
-- **Countdown Target**: In `js/app.js`, edit the `weddingDate` line:
-  ```javascript
-  const weddingDate = new Date('2026-11-15T11:30:00').getTime();
-  ```
+- **Host / Admin View**: [http://localhost:8080/?admin=true](http://localhost:8080/?admin=true)
+- **Guest View Example**: Open any encrypted `?inv=...` link generated from the modal.

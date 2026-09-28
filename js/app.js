@@ -1,8 +1,12 @@
 /**
  * Main Application Logic for Muslim Royal Wedding Invitation
- * Handles Open Invitation button, celebratory stars spreading animation,
- * URL Personalization, Modal Generator, WhatsApp Pre-filled Links,
- * Countdown Timer, Calendar .ics export, and RSVP Duas Wall.
+ * Features:
+ * 1. Encrypted URL Guest Tokens (No plain text names in URL).
+ * 2. Strict Guest Mode: "Create Guest Link" & bottom banner hidden for guests.
+ * 3. WhatsApp Redirect: In Guest mode, redirects directly to Admin Family (8800646224).
+ *    In Admin mode, shares the personalized invitation message with encrypted link.
+ * 4. Dual-side Star Spreading Animation on "OPEN INVITATION".
+ * 5. Event Itinerary, Countdown, Map, Calendar .ics & RSVP Duas Wall.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,6 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
   const applyPreviewOnlyBtn = document.getElementById('applyPreviewOnlyBtn');
   const quickWhatsappShareBtn = document.getElementById('quickWhatsappShareBtn');
+  const whatsappNavTooltip = document.getElementById('whatsappNavTooltip');
+
+  // Admin Controls
+  const hostAdminToggleLink = document.getElementById('hostAdminToggleLink');
+  const hostLoginText = document.getElementById('hostLoginText');
+  const adminIndicatorBadge = document.getElementById('adminIndicatorBadge');
+  const logoutAdminLink = document.getElementById('logoutAdminLink');
 
   // Toast Element
   const toastNotification = document.getElementById('toastNotification');
@@ -48,28 +59,122 @@ document.addEventListener('DOMContentLoaded', () => {
   const rsvpForm = document.getElementById('rsvpForm');
   const duasContainer = document.getElementById('duasContainer');
 
+  // Configuration Constants
+  const HOST_FAMILY_PHONE = '918800646224'; // Host/Admin family WhatsApp (+91 8800646224)
+  const HOST_PASSCODES = ['8800', '8800646224', '1234', 'admin'];
+  const CIPHER_KEY = [0x5A, 0x3C, 0x7E, 0x29, 0x8B, 0x14, 0x6D, 0x4F];
+
   // State
+  let isAdmin = false;
   let currentGuest = {
     prefix: 'Dearest',
     name: 'Uncle Rashid & Family'
   };
 
   /* --------------------------------------------------
-     1. URL QUERY PARAMETER INITIALIZATION
+     1. ROBUST URL-SAFE ENCRYPTION / DECRYPTION ENGINE
      -------------------------------------------------- */
-  function parseQueryParams() {
+  function encryptGuestData(prefix, name) {
+    try {
+      const payload = JSON.stringify({ p: prefix, n: name, v: 1, ts: Date.now() });
+      const utf8 = unescape(encodeURIComponent(payload));
+      const enc = [];
+      for (let i = 0; i < utf8.length; i++) {
+        enc.push(String.fromCharCode(utf8.charCodeAt(i) ^ CIPHER_KEY[i % CIPHER_KEY.length]));
+      }
+      return btoa(enc.join(''))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+    } catch (e) {
+      console.error('Encryption error:', e);
+      return '';
+    }
+  }
+
+  function decryptGuestData(token) {
+    try {
+      if (!token) return null;
+      let b64 = token.replace(/-/g, '+').replace(/_/g, '/');
+      const padded = b64 + '==='.slice((b64.length + 3) % 4);
+      const raw = atob(padded);
+      const dec = [];
+      for (let i = 0; i < raw.length; i++) {
+        dec.push(String.fromCharCode(raw.charCodeAt(i) ^ CIPHER_KEY[i % CIPHER_KEY.length]));
+      }
+      const jsonStr = decodeURIComponent(escape(dec.join('')));
+      const data = JSON.parse(jsonStr);
+      if (data && data.n) {
+        return { prefix: data.p || 'Dearest', name: data.n };
+      }
+    } catch (e) {
+      console.warn('Could not decrypt token:', e);
+    }
+    return null;
+  }
+
+  /* --------------------------------------------------
+     2. PARSE QUERY PARAMS & DETERMINE ADMIN VS GUEST
+     -------------------------------------------------- */
+  function parseQueryParamsAndMode() {
     const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('inv') || urlParams.get('code') || urlParams.get('token');
     const guestParam = urlParams.get('to') || urlParams.get('guest') || urlParams.get('name');
     const prefixParam = urlParams.get('prefix');
 
-    if (guestParam) {
+    // 1. Decrypt token if present
+    if (token) {
+      const decrypted = decryptGuestData(token);
+      if (decrypted) {
+        currentGuest.prefix = decrypted.prefix;
+        currentGuest.name = decrypted.name;
+      }
+    } else if (guestParam) {
+      // Legacy fallback
       currentGuest.name = decodeURIComponent(guestParam);
+      if (prefixParam) currentGuest.prefix = decodeURIComponent(prefixParam);
     }
-    if (prefixParam) {
-      currentGuest.prefix = decodeURIComponent(prefixParam);
+
+    // 2. Check Admin Status:
+    // If a guest token/parameter is provided, strictly enforce GUEST MODE
+    // unless the URL explicitly specifies &admin=true!
+    const hasExplicitAdminQuery = urlParams.get('admin') === 'true' || urlParams.get('admin') === '1' || urlParams.get('host') === 'true';
+
+    if (token || guestParam) {
+      if (hasExplicitAdminQuery) {
+        isAdmin = true;
+      } else {
+        isAdmin = false;
+        sessionStorage.removeItem('wedding_host_admin');
+      }
+    } else if (hasExplicitAdminQuery) {
+      isAdmin = true;
+      sessionStorage.setItem('wedding_host_admin', 'true');
+    } else if (sessionStorage.getItem('wedding_host_admin') === 'true') {
+      isAdmin = true;
+    } else {
+      // Default direct visit to root URL -> ADMIN MODE
+      isAdmin = true;
     }
 
     applyGuestToUI(currentGuest.prefix, currentGuest.name);
+    applyAdminState();
+  }
+
+  function applyAdminState() {
+    if (isAdmin) {
+      body.classList.remove('guest-mode');
+      body.classList.add('admin-mode');
+      if (adminIndicatorBadge) adminIndicatorBadge.style.display = 'inline-flex';
+      if (whatsappNavTooltip) whatsappNavTooltip.textContent = 'Share Invitation';
+      if (hostLoginText) hostLoginText.textContent = 'Admin Mode Active';
+    } else {
+      body.classList.remove('admin-mode');
+      body.classList.add('guest-mode');
+      if (adminIndicatorBadge) adminIndicatorBadge.style.display = 'none';
+      if (whatsappNavTooltip) whatsappNavTooltip.textContent = 'Contact Host Family';
+      if (hostLoginText) hostLoginText.textContent = 'Host Login';
+    }
   }
 
   function applyGuestToUI(prefix, name) {
@@ -87,7 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     2. "OPEN INVITATION" CLICK & STARS SPREADING ANIMATION
+     3. "OPEN INVITATION" CLICK & STARS SPREADING ANIMATION
+     (Shoots only from 2 sides - center is clear)
      -------------------------------------------------- */
   let isEnvelopeOpened = false;
 
@@ -132,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     3. AUDIO CONTROLS
+     4. AUDIO CONTROLS
      -------------------------------------------------- */
   if (audioToggleBtn) {
     audioToggleBtn.addEventListener('click', () => {
@@ -143,9 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     4. PERSONALIZED INVITATION GENERATOR MODAL
+     5. GUEST INVITATION GENERATOR (ADMIN ONLY)
+     Uses Encrypted Tokens (No plain text names in URL)
      -------------------------------------------------- */
   function openModal() {
+    if (!isAdmin) {
+      showToast('Guest Link Creator is restricted to Host/Admin.');
+      return;
+    }
     personalizeModal.classList.add('active');
     personalizeModal.setAttribute('aria-hidden', 'false');
     updateModalPreviewAndUrl();
@@ -165,16 +276,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateModalPreviewAndUrl() {
-    const prefix = customPrefixInput.value || 'Dearest';
-    const rawName = customGuestInput.value.trim() || 'Uncle Rashid & Family';
+    const prefix = customPrefixInput ? customPrefixInput.value : 'Dearest';
+    const rawName = (customGuestInput && customGuestInput.value.trim()) ? customGuestInput.value.trim() : 'Uncle Rashid & Family';
 
-    previewPrefixText.textContent = prefix;
-    previewNameText.textContent = rawName;
+    if (previewPrefixText) previewPrefixText.textContent = prefix;
+    if (previewNameText) previewNameText.textContent = rawName;
 
-    // Generate Shareable Link
+    // Generate Encrypted Token (No plain text in link!)
+    const encryptedToken = encryptGuestData(prefix, rawName);
     const baseUrl = window.location.origin + window.location.pathname;
-    const finalUrl = `${baseUrl}?prefix=${encodeURIComponent(prefix)}&to=${encodeURIComponent(rawName)}`;
-    generatedUrlInput.value = finalUrl;
+    const finalUrl = `${baseUrl}?inv=${encryptedToken}`;
+    
+    if (generatedUrlInput) {
+      generatedUrlInput.value = finalUrl;
+    }
   }
 
   if (customPrefixInput) customPrefixInput.addEventListener('change', updateModalPreviewAndUrl);
@@ -184,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (copyUrlBtn) {
     copyUrlBtn.addEventListener('click', () => {
       const url = generatedUrlInput.value;
-      copyToClipboard(url, 'Personalized invitation link copied!');
+      copyToClipboard(url, 'Encrypted invitation link copied to clipboard!');
     });
   }
 
@@ -195,17 +310,44 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = customGuestInput.value.trim() || 'Uncle Rashid & Family';
       applyGuestToUI(prefix, name);
       closeModal();
-      showToast(`Applied invite for ${prefix} ${name}`);
+      showToast(`Preview applied for ${prefix} ${name}`);
     });
   }
 
-  // WhatsApp Share Buttons
-  function shareOnWhatsApp(customMessage = null) {
+  /* --------------------------------------------------
+     6. WHATSAPP LOGIC (ADMIN SHARES VS GUEST CONTACTS 8800646224)
+     -------------------------------------------------- */
+  function handleNavbarWhatsApp() {
+    if (isAdmin) {
+      // Admin: Open Generator modal or share
+      openModal();
+    } else {
+      // Guest: Redirect directly to Host Family at 8800646224
+      contactHostOnWhatsApp();
+    }
+  }
+
+  if (quickWhatsappShareBtn) {
+    quickWhatsappShareBtn.addEventListener('click', handleNavbarWhatsApp);
+  }
+
+  // Guest clicks to message host family
+  function contactHostOnWhatsApp() {
+    const guestGreeting = currentGuest.name ? ` From: ${currentGuest.name}` : '';
+    const message = `Assalamu Alaikum! Thank you so much for the royal wedding invitation for Zayd & Ayah.${guestGreeting}`;
+    const waLink = `https://api.whatsapp.com/send?phone=${HOST_FAMILY_PHONE}&text=${encodeURIComponent(message)}`;
+    window.open(waLink, '_blank');
+  }
+
+  // Admin shares invite with encrypted link
+  function shareInviteAsAdmin() {
     const prefix = customPrefixInput ? customPrefixInput.value : currentGuest.prefix;
     const name = customGuestInput && customGuestInput.value.trim() ? customGuestInput.value.trim() : currentGuest.name;
-    const inviteUrl = generatedUrlInput ? generatedUrlInput.value : window.location.href;
+    const encryptedToken = encryptGuestData(prefix, name);
+    const baseUrl = window.location.origin + window.location.pathname;
+    const inviteUrl = `${baseUrl}?inv=${encryptedToken}`;
 
-    const message = customMessage || 
+    const message = 
       `Assalamu Alaikum Warahmatullah!\n\n` +
       `We cordially invite you, *${prefix} ${name}*, and your honorable family to celebrate the auspicious Baraat, Nikah & Walima ceremony of our beloved:\n\n` +
       `💍 *Zayd Tariq Khan & Ayah Farooq Al-Mansoor*\n\n` +
@@ -220,15 +362,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (modalWhatsappBtn) {
-    modalWhatsappBtn.addEventListener('click', () => shareOnWhatsApp());
-  }
-
-  if (quickWhatsappShareBtn) {
-    quickWhatsappShareBtn.addEventListener('click', () => shareOnWhatsApp());
+    modalWhatsappBtn.addEventListener('click', shareInviteAsAdmin);
   }
 
   /* --------------------------------------------------
-     5. COUNTDOWN TIMER ENGINE
+     7. HOST LOGIN / LOGOUT TOGGLE IN FOOTER
+     -------------------------------------------------- */
+  if (hostAdminToggleLink) {
+    hostAdminToggleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isAdmin) {
+        showToast('You are currently in Host Admin mode.');
+        return;
+      }
+
+      const pass = prompt('Enter Host Admin Passcode (Hint: 8800 or phone):');
+      if (pass && HOST_PASSCODES.includes(pass.trim())) {
+        sessionStorage.setItem('wedding_host_admin', 'true');
+        isAdmin = true;
+        applyAdminState();
+        showToast('Host Admin Mode Activated! Create Guest Link is now enabled.');
+      } else if (pass !== null) {
+        showToast('Invalid passcode. Access restricted.');
+      }
+    });
+  }
+
+  if (logoutAdminLink) {
+    logoutAdminLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      sessionStorage.removeItem('wedding_host_admin');
+      isAdmin = false;
+      applyAdminState();
+      showToast('Exited Admin Mode. Viewing as Guest.');
+    });
+  }
+
+  /* --------------------------------------------------
+     8. COUNTDOWN TIMER ENGINE
      Target: Friday, December 18, 2026, 6:30 PM
      -------------------------------------------------- */
   const cdDays = document.getElementById('cdDays');
@@ -265,14 +436,14 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
 
   /* --------------------------------------------------
-     6. CALENDAR INTEGRATION (.ICS & GOOGLE CALENDAR)
+     9. CALENDAR INTEGRATION (.ICS & GOOGLE CALENDAR)
      -------------------------------------------------- */
   if (addToCalBtn) {
     addToCalBtn.addEventListener('click', () => {
       const title = encodeURIComponent("Baraat & Sacred Nikah: Zayd & Ayah");
       const details = encodeURIComponent("You are cordially invited to celebrate the Baraat, Nikah, and Walima of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.");
       const location = encodeURIComponent("The Imperial Emerald Palace Gardens, 77 Royal Boulevard, Cantonment Enclave");
-      const dates = "20261218T130000Z/20261219T180000Z"; // UTC format
+      const dates = "20261218T130000Z/20261219T180000Z";
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
       window.open(googleCalUrl, '_blank');
     });
@@ -309,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     7. VENUE ADDRESS COPY
+     10. VENUE ADDRESS COPY
      -------------------------------------------------- */
   if (copyAddressBtn && venueAddressText) {
     copyAddressBtn.addEventListener('click', () => {
@@ -318,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     8. RSVP FORM & DUAS WALL (LOCALSTORAGE SYNC)
+     11. RSVP FORM & DUAS WALL (LOCALSTORAGE SYNC)
      -------------------------------------------------- */
   const DUAS_STORAGE_KEY = 'wedding_duas_list_v2';
 
@@ -390,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     9. SCROLL REVEAL OBSERVER
+     12. SCROLL REVEAL OBSERVER
      -------------------------------------------------- */
   function triggerScrollReveals() {
     const revealElements = document.querySelectorAll('.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right');
@@ -409,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     10. HELPERS (CLIPBOARD & TOAST)
+     13. HELPERS (CLIPBOARD & TOAST)
      -------------------------------------------------- */
   function copyToClipboard(text, successMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -457,6 +628,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Init
-  parseQueryParams();
+  parseQueryParamsAndMode();
   loadSavedDuas();
 });

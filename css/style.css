@@ -2181,3 +2181,50 @@ label i {
     letter-spacing: 0.12em;
   }
 }
+
+/* --------------------------------------------------
+   19. GUEST MODE VS ADMIN MODE
+   -------------------------------------------------- */
+body.guest-mode .admin-only {
+  display: none !important;
+}
+
+.host-login-link {
+  font-size: 0.8rem;
+  color: var(--text-dim) !important;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.host-login-link:hover {
+  opacity: 1;
+  color: var(--gold-light) !important;
+}
+
+.admin-indicator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fde68a;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  margin: 14px auto 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+.admin-indicator-badge i {
+  color: #f59e0b;
+}
+.admin-indicator-badge a {
+  color: #f59e0b;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.admin-indicator-badge a:hover {
+  color: #ffffff;
+}

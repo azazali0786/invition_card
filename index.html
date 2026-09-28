@@ -46,15 +46,16 @@
         <span class="btn-tooltip">Ambient Music</span>
       </button>
 
-      <!-- Personalize Invitation Link Generator -->
-      <button class="nav-pill-btn highlight-pulse" id="openPersonalizeModalBtn" aria-label="Personalize this invite for a guest">
+      <!-- Personalize Invitation Link Generator (Admin Only) -->
+      <button class="nav-pill-btn highlight-pulse admin-only" id="openPersonalizeModalBtn" aria-label="Personalize this invite for a guest">
         <i class="fa-solid fa-wand-magic-sparkles"></i>
         <span class="pill-text">Create Guest Link</span>
       </button>
 
-      <!-- Share on WhatsApp -->
-      <button class="icon-btn whatsapp-nav-btn" id="quickWhatsappShareBtn" title="Share via WhatsApp" aria-label="Share via WhatsApp">
+      <!-- WhatsApp Button (Dynamic: Admin Shares / Guest Contacts 8800646224) -->
+      <button class="icon-btn whatsapp-nav-btn" id="quickWhatsappShareBtn" title="WhatsApp" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
+        <span class="btn-tooltip" id="whatsappNavTooltip">Contact via WhatsApp</span>
       </button>
     </div>
   </nav>
@@ -795,8 +796,8 @@
       </div>
     </section>
 
-    <!-- Personalized Invitation Floating Bar / Share Generator Ribbon -->
-    <section class="share-generator-banner container reveal-fade">
+    <!-- Personalized Invitation Floating Bar / Share Generator Ribbon (Admin Only) -->
+    <section class="share-generator-banner container reveal-fade admin-only">
       <div class="banner-inner glass-gold">
         <div class="banner-icon">
           <i class="fa-solid fa-share-nodes"></i>
@@ -825,6 +826,12 @@
           <a href="#envelopeOverlay" id="reopenEnvelopeBtn"><i class="fa-solid fa-envelope-open"></i> View Envelope Again</a>
           <a href="#venueSection"><i class="fa-solid fa-location-dot"></i> Venue Map</a>
           <a href="#rsvpSection"><i class="fa-solid fa-calendar-check"></i> RSVP</a>
+          <a href="#" id="hostAdminToggleLink" class="host-login-link"><i class="fa-solid fa-lock"></i> <span id="hostLoginText">Host Login</span></a>
+        </div>
+
+        <div id="adminIndicatorBadge" class="admin-indicator-badge" style="display: none;">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Host Admin Mode Active (<a href="#" id="logoutAdminLink">Exit Admin</a>)</span>
         </div>
 
         <p class="footer-copy">&copy; 2026 Khan &amp; Al-Mansoor Families. All blessings reserved.</p>
