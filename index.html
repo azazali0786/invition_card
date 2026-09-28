@@ -3,37 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Wedding Invitation | Syed Zayan &amp; Aiza Fatima</title>
+  <title>Zayd &amp; Ayah | Royal Muslim Wedding &amp; Walima Invitation</title>
   
   <!-- SEO & Social Sharing Meta Tags -->
-  <meta name="description" content="Together with our families, we joyfully invite you to celebrate the Nikah and Wedding of Syed Zayan & Aiza Fatima.">
-  <meta property="og:title" content="Royal Wedding Invitation: Syed Zayan & Aiza Fatima">
-  <meta property="og:description" content="In the name of Allah, Most Gracious, Most Merciful. You are cordially invited to celebrate our Nikah and auspicious marriage ceremonies.">
+  <meta name="description" content="Together with our families, we joyfully invite you to celebrate the Baraat, Nikah, and Walima of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.">
+  <meta property="og:title" content="Royal Wedding Invitation: Zayd & Ayah">
+  <meta property="og:description" content="In the name of Allah, Most Gracious, Most Merciful. You are cordially invited to celebrate our sacred Nikah and auspicious marriage ceremonies.">
   <meta property="og:image" content="assets/wedding_bg.jpg">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0b251e">
+  <meta name="theme-color" content="#061813">
 
   <!-- Google Fonts for Luxury & Islamic Calligraphy Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;600;700;800;900&family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Canvas Confetti Library for Star Spreading Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="envelope-active">
 
-  <!-- Background Canvas for Floating Gold Stardust & Rose Petals -->
+  <!-- Background Canvas for Floating Gold Stardust & Falling Rose Petals -->
   <canvas id="ambient-canvas"></canvas>
 
-  <!-- Sound / Ambient Audio Toggle & Quick Navigation Bar -->
+  <!-- Quick Floating Navigation Bar -->
   <nav class="quick-nav-bar" id="quickNavBar" aria-label="Quick Actions">
     <div class="nav-brand">
       <span class="brand-monogram">Z &amp; A</span>
-      <span class="brand-sub">Nikah Mubarak</span>
+      <span class="brand-sub">Nikah &amp; Walima</span>
     </div>
     
     <div class="nav-actions">
@@ -58,11 +61,21 @@
 
   <!-- ==============================================
        STAGE 1: 3D INTERACTIVE ROYAL ENVELOPE OPENING
+       Featuring the glowing "OPEN INVITATION" button
+       and explosive stars spreading animation
        ============================================== -->
   <section class="envelope-overlay" id="envelopeOverlay" aria-modal="true" role="dialog" aria-label="Wedding Envelope">
     <div class="envelope-scene">
       
-      <!-- Floating Islamic Lanterns Glow Decor -->
+      <!-- Top Royal Emblem -->
+      <div class="top-royal-badge">
+        <i class="fa-solid fa-sparkles pulse-star"></i>
+        <span>Royal Nikah &amp; Walima Invitation</span>
+        <i class="fa-solid fa-sparkles pulse-star"></i>
+      </div>
+      <h1 class="envelope-top-heading">The Khan &amp; Mansoor Families Welcome You</h1>
+
+      <!-- Hanging Moroccan Lanterns -->
       <div class="lantern-decor left-lantern">
         <div class="lantern-string"></div>
         <div class="lantern-body">
@@ -76,60 +89,80 @@
         </div>
       </div>
 
+      <!-- 3D Envelope Container -->
       <div class="envelope-card-wrapper" id="envelopeWrapper">
-        <!-- 3D Envelope Base -->
-        <div class="envelope">
-          <!-- Back flap -->
+        <div class="envelope" id="envelope3d">
+          
+          <!-- Envelope Back Layer -->
           <div class="envelope-back"></div>
-          
-          <!-- Letter / Card Peeking Inside -->
-          <div class="envelope-paper" id="envelopePaper">
-            <div class="paper-ornament-top"></div>
-            <div class="paper-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-            <div class="paper-names">Syed Zayan &amp; Aiza Fatima</div>
-            <div class="paper-sub">Cordially Request Your Presence</div>
-            <div class="paper-ornament-bottom"></div>
-          </div>
 
-          <!-- Left & Right Flaps -->
-          <div class="envelope-left"></div>
-          <div class="envelope-right"></div>
-          
-          <!-- Bottom Flap -->
-          <div class="envelope-bottom"></div>
+          <!-- Islamic Watermark Graphic -->
+          <div class="envelope-watermark">
+            <svg width="220" height="220" viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="0.8">
+              <polygon points="50,5 95,50 50,95 5,50" />
+              <polygon points="5,5 95,5 95,95 5,95" />
+              <circle cx="50" cy="50" r="34" />
+              <circle cx="50" cy="50" r="20" />
+            </svg>
+          </div>
 
           <!-- Top Foldable Flap -->
           <div class="envelope-top" id="envelopeTopFlap">
             <div class="envelope-top-triangle"></div>
           </div>
 
-          <!-- Golden Wax Seal Button -->
-          <div class="wax-seal-container" id="waxSealBtn" role="button" tabindex="0" aria-label="Tap to break seal and open invitation">
-            <div class="seal-glow-ring"></div>
-            <img src="assets/gold_seal.jpg" alt="Royal Golden Nikah Wax Seal" class="wax-seal-img" id="waxSealImg">
-            <div class="seal-tap-pulse">
-              <i class="fa-solid fa-hand-pointer"></i>
-              <span>Tap to Open</span>
+          <!-- Left, Right & Bottom Flaps -->
+          <div class="envelope-left"></div>
+          <div class="envelope-right"></div>
+          <div class="envelope-bottom"></div>
+
+          <!-- Guest Personalization Plate & Open Button -->
+          <div class="envelope-plate-content">
+            <div class="plate-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <p class="plate-addressed-label">Specially Addressed To</p>
+
+            <div class="plate-guest-badge" id="coverPersonalizedBadge">
+              <h2 class="plate-guest-name" id="envelopeGuestName">Uncle Rashid &amp; Family</h2>
             </div>
+
+            <p class="plate-compliments">
+              With the best compliments of Tariq Jamil Khan &amp; Family
+            </p>
+
+            <!-- ==============================================
+                 FEATURE 1: THE EXACT "OPEN INVITATION" BUTTON
+                 ============================================== -->
+            <button type="button" class="open-invitation-btn" id="openInvitationBtn" aria-label="Open wedding invitation">
+              <!-- Left Open Envelope Icon -->
+              <span class="btn-icon-envelope">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z" />
+                  <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10" />
+                </svg>
+              </span>
+
+              <!-- Button Text -->
+              <span class="btn-text-label">OPEN INVITATION</span>
+
+              <!-- Right Sparkle Star Icon -->
+              <span class="btn-icon-sparkle">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                  <circle cx="19" cy="5" r="1.5" />
+                  <circle cx="5" cy="19" r="1" />
+                </svg>
+              </span>
+            </button>
+
           </div>
         </div>
-
-        <!-- Personalized Guest Label on Envelope Cover -->
-        <div class="personalized-cover-badge" id="coverPersonalizedBadge">
-          <div class="badge-filigree-left"></div>
-          <div class="badge-content">
-            <span class="badge-prefix" id="envelopeGuestPrefix">Especially Prepared For:</span>
-            <h2 class="badge-guest-name" id="envelopeGuestName">Honored Guest &amp; Family</h2>
-            <p class="badge-dua">"May Allah shower His blessings upon you and your loved ones"</p>
-          </div>
-          <div class="badge-filigree-right"></div>
-        </div>
-
       </div>
 
-      <p class="envelope-hint">
-        <i class="fa-solid fa-sparkles"></i> Click or tap the golden seal to reveal the invitation
-      </p>
+      <div class="envelope-audio-notice">
+        <i class="fa-solid fa-volume-high"></i>
+        <span>Includes celebratory ambient melody • Tap to unseal</span>
+      </div>
+
     </div>
   </section>
 
@@ -173,7 +206,7 @@
             <span></span>
           </div>
           <p class="verse-english">
-            "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
+            "And among His signs is that He created for you mates from among yourselves that you may dwell in tranquility with them; and He placed between you affection and mercy."
           </p>
           <span class="verse-reference">— Surah Ar-Rum (30:21)</span>
         </div>
@@ -186,9 +219,9 @@
           </div>
           <div class="guest-targeted-info">
             <span class="guest-salute-title" id="mainGuestPrefix">Dearest</span>
-            <h1 class="guest-salute-name" id="mainGuestName">Honored Guests &amp; Family</h1>
+            <h1 class="guest-salute-name" id="mainGuestName">Uncle Rashid &amp; Family</h1>
             <p class="guest-salute-message">
-              We warmly welcome you to celebrate the joyous union and Nikah ceremony of our beloved children. Your gracious presence and heartfelt Duas will make this sacred milestone truly memorable.
+              We warmly welcome you to celebrate the joyous Baraat, Nikah, and Walima ceremonies of our beloved children. Your gracious presence and heartfelt Duas will make this sacred milestone truly memorable.
             </p>
           </div>
         </div>
@@ -202,11 +235,11 @@
               <span class="crest-letter">Z</span>
             </div>
             <span class="person-role">Groom</span>
-            <h2 class="person-name">Syed Zayan Ahmed</h2>
+            <h2 class="person-name">Zayd Tariq Khan</h2>
             <div class="parentage-info">
               <span class="parent-label">Beloved Son of</span>
-              <p class="parent-names">Mr. Syed Tariq Ahmed<br>&amp; Mrs. Parveen Tariq</p>
-              <p class="family-origins">Grandson of Late Syed Manzoor Ahmed</p>
+              <p class="parent-names">Mr. Tariq Jamil Khan<br>&amp; Mrs. Parveen Tariq Khan</p>
+              <p class="family-origins">Grandson of Late Janab Abdul Rehman Khan &amp; Begum Fatima Khan</p>
             </div>
           </div>
 
@@ -226,11 +259,11 @@
               <span class="crest-letter">A</span>
             </div>
             <span class="person-role">Bride</span>
-            <h2 class="person-name">Aiza Fatima</h2>
+            <h2 class="person-name">Ayah Farooq Al-Mansoor</h2>
             <div class="parentage-info">
               <span class="parent-label">Beloved Daughter of</span>
-              <p class="parent-names">Mr. Mohammad Farooq Khan<br>&amp; Mrs. Yasmeen Farooq</p>
-              <p class="family-origins">Granddaughter of Late Al-Haj Abdul Rasheed Khan</p>
+              <p class="parent-names">Mr. Farooq Ahmad Al-Mansoor<br>&amp; Mrs. Yasmeen Mansoor</p>
+              <p class="family-origins">Granddaughter of Late Haji Ghulam Mohammad &amp; Begum Zubeda Khatoon</p>
             </div>
           </div>
 
@@ -270,7 +303,7 @@
       </div>
 
       <p class="nikah-date-text">
-        <i class="fa-regular fa-calendar-star"></i> Insha'Allah on <strong>Sunday, 15th November 2026</strong> | <strong>05 Jumada al-Awwal 1448 AH</strong>
+        <i class="fa-regular fa-calendar-star"></i> Insha'Allah on <strong>Friday &amp; Saturday, 18 - 19 December 2026</strong> | <strong>09 - 10 Jumada Al-Thani 1448 AH</strong>
       </p>
 
       <div class="countdown-actions">
@@ -285,100 +318,242 @@
       </div>
     </section>
 
-    <!-- Program & Events Schedule Timeline -->
+    <!-- ==============================================
+         FEATURE 3: MODERN EVENT CARDS (MATCHING IMAGE 2)
+         ============================================== -->
     <section class="events-section container reveal-slide-up" id="programSection">
       <div class="section-title-wrap">
-        <span class="sub-heading">Celebrations of Joy &amp; Sunnah</span>
-        <h2 class="main-heading">Wedding Program &amp; Itinerary</h2>
+        <div class="sacred-celebrations-pill">
+          <i class="fa-solid fa-sparkles text-amber"></i>
+          <span>Sacred Celebrations</span>
+          <i class="fa-solid fa-sparkles text-amber"></i>
+        </div>
+        <h2 class="main-heading-gradient">Program &amp; Itinerary</h2>
+        <p class="arabic-subheading-gold" dir="rtl">برنامج الاحتفالات المباركة</p>
+        <p class="section-desc">We warmly look forward to celebrating each precious milestone with you and your family.</p>
         <div class="gold-filigree-divider"></div>
-        <p class="section-desc">Join us in each sacred and festive moment as we celebrate love, family, and lifelong companionship.</p>
       </div>
 
-      <div class="timeline-container">
+      <div class="event-cards-stack">
         
-        <!-- Event 1: Mehndi / Mayun -->
-        <div class="timeline-item reveal-slide-left">
-          <div class="timeline-marker">
-            <i class="fa-solid fa-hand-sparkles"></i>
-          </div>
-          <div class="timeline-card glass-panel">
-            <div class="event-tag">Festive Evening</div>
-            <h3 class="event-title">Mehndi &amp; Mayun Night</h3>
-            <div class="event-datetime">
-              <span class="evt-date"><i class="fa-regular fa-calendar"></i> Friday, 13th Nov 2026</span>
-              <span class="evt-time"><i class="fa-regular fa-clock"></i> 07:30 PM Onwards</span>
+        <!-- ================= EVENT 1: BARAAT & SACRED NIKAH ================= -->
+        <article class="modern-event-card">
+          <!-- Top Row: Title + Date/Time Badges -->
+          <div class="event-card-top">
+            <div class="event-title-group">
+              <span class="event-tag-roman">EVENT I</span>
+              <h3 class="event-card-title">Baraat &amp; Sacred Nikah</h3>
+              <p class="event-arabic-title" dir="rtl">حفل عقد القران والزفاف</p>
+              <p class="event-card-subtitle">Solemnization of Marriage &amp; Ijab-o-Qubool</p>
             </div>
-            <p class="event-details">
-              An enchanting evening of henna application, traditional folk wedding hymns, laughter, and fragrant jasmine garlands, followed by a royal Mughlai buffet dinner.
-            </p>
-            <div class="event-venue-mini">
-              <i class="fa-solid fa-location-dot"></i> The Amber Courtyard, Royal Palm Palace, MG Road
-            </div>
-          </div>
-        </div>
 
-        <!-- Event 2: Nikah Ceremony (Highlight) -->
-        <div class="timeline-item highlight-event reveal-slide-right">
-          <div class="timeline-marker royal-marker">
-            <i class="fa-solid fa-ring"></i>
-          </div>
-          <div class="timeline-card glass-gold">
-            <div class="event-tag royal-tag">The Sacred Union (Sunnah)</div>
-            <h3 class="event-title">Nikah Ceremony &amp; Khutbah</h3>
-            <div class="event-datetime">
-              <span class="evt-date"><i class="fa-regular fa-calendar-check"></i> Sunday, 15th Nov 2026</span>
-              <span class="evt-time"><i class="fa-regular fa-clock"></i> 11:30 AM (Strictly after Zuhr Athan)</span>
-            </div>
-            <p class="event-details">
-              The solemnization of Nikah followed by Khutbah-e-Nikah, soulful Dua for the bride &amp; groom, distribution of traditional Bid’ah/Mithai, and welcoming the Barat.
-            </p>
-            <div class="event-venue-mini">
-              <i class="fa-solid fa-mosque"></i> Grand Noor Ballroom, Royal Palm Palace
+            <div class="event-badges-stack">
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-calendar text-amber"></i>
+                <span>Friday, 18 December 2026</span>
+              </div>
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-clock text-amber"></i>
+                <span>06:30 PM - Baraat Arrival | 07:45 PM - Nikah Ceremony</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Event 3: Barat & Dawat-e-Nikah (Dinner Reception) -->
-        <div class="timeline-item reveal-slide-left">
-          <div class="timeline-marker">
-            <i class="fa-solid fa-crown"></i>
-          </div>
-          <div class="timeline-card glass-panel">
-            <div class="event-tag">Grand Reception</div>
-            <h3 class="event-title">Barat &amp; Dawat-e-Nikah</h3>
-            <div class="event-datetime">
-              <span class="evt-date"><i class="fa-regular fa-calendar"></i> Sunday, 15th Nov 2026</span>
-              <span class="evt-time"><i class="fa-regular fa-clock"></i> 01:30 PM to 04:30 PM</span>
-            </div>
-            <p class="event-details">
-              Grand entrance of the newlyweds, photography with cherished guests, felicitations from elders, and an exquisite banquet feast with Dum Biryani, Nawabi Kebabs &amp; Kheer.
-            </p>
-            <div class="event-venue-mini">
-              <i class="fa-solid fa-utensils"></i> Grand Noor Dining Palace
-            </div>
-          </div>
-        </div>
+          <!-- Divider -->
+          <div class="event-card-divider"></div>
 
-        <!-- Event 4: Dawat-e-Walima -->
-        <div class="timeline-item reveal-slide-right">
-          <div class="timeline-marker">
-            <i class="fa-solid fa-champagne-glasses"></i>
-          </div>
-          <div class="timeline-card glass-panel">
-            <div class="event-tag">Sunnah Feast</div>
-            <h3 class="event-title">Dawat-e-Walima (Reception)</h3>
-            <div class="event-datetime">
-              <span class="evt-date"><i class="fa-regular fa-calendar"></i> Tuesday, 17th Nov 2026</span>
-              <span class="evt-time"><i class="fa-regular fa-clock"></i> 08:00 PM Onwards</span>
+          <!-- Description -->
+          <p class="event-card-desc">
+            Join us as the groom's procession arrives in celebration, followed by the auspicious solemnization of the Nikah and collective Dua for the newlywed couple.
+          </p>
+
+          <!-- Venue & Attire Info Grid -->
+          <div class="event-info-grid">
+            <!-- Venue Location -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">VENUE LOCATION</span>
+                <h4 class="info-val-title">The Grand Royal Crystal Ballroom</h4>
+                <p class="info-val-sub">Palace Road, Near Heritage Garden, Civil Lines</p>
+              </div>
             </div>
-            <p class="event-details">
-              Hosted with immense joy by the Groom’s Family to celebrate the auspicious marriage according to the noble Sunnah of our beloved Prophet Muhammad (ﷺ).
-            </p>
-            <div class="event-venue-mini">
-              <i class="fa-solid fa-hotel"></i> The Imperial Crystal Hall, Residency Road
+
+            <!-- Attire Suggestion -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-shirt"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">ATTIRE SUGGESTION</span>
+                <h4 class="info-val-title">Traditional Formal / Royal Sherwani &amp; Kurta</h4>
+              </div>
             </div>
           </div>
-        </div>
+
+          <!-- Action Buttons -->
+          <div class="event-card-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baraat+%26+Sacred+Nikah%3A+Zayd+%26+Ayah&dates=20261218T130000Z/20261218T180000Z&details=Solemnization+of+Marriage+of+Zayd+and+Ayah&location=The+Grand+Royal+Crystal+Ballroom" target="_blank" rel="noopener noreferrer" class="btn-pill-calendar">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Add to Google Calendar</span>
+            </a>
+
+            <a href="https://maps.google.com/?q=The+Grand+Royal+Crystal+Ballroom" target="_blank" rel="noopener noreferrer" class="btn-pill-directions">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>Get Directions</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ================= EVENT 2: GRAND WALIMA RECEPTION ================= -->
+        <article class="modern-event-card highlight-walima">
+          <!-- Special Groom's Family Banner -->
+          <div class="walima-top-banner">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>Groom's Family Reception (Sunnah-e-Walima)</span>
+          </div>
+
+          <!-- Top Row: Title + Date/Time Badges -->
+          <div class="event-card-top">
+            <div class="event-title-group">
+              <span class="event-tag-roman">EVENT II</span>
+              <h3 class="event-card-title">Grand Walima Reception</h3>
+              <p class="event-arabic-title" dir="rtl">حفل وليمة الزفاف المباركة</p>
+              <p class="event-card-subtitle">Hosted with Joy &amp; Gratitude by the Groom's Family (Sunnah-e-Walima)</p>
+            </div>
+
+            <div class="event-badges-stack">
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-calendar text-amber"></i>
+                <span>Saturday, 19 December 2026</span>
+              </div>
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-clock text-amber"></i>
+                <span>07:30 PM Onwards (Dinner Banquet served at 08:30 PM)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="event-card-divider"></div>
+
+          <!-- Description -->
+          <p class="event-card-desc">
+            In accordance with the Sunnah of our beloved Prophet Muhammad (ﷺ), Mr. &amp; Mrs. Tariq Jamil Khan cordially request the honor of your gracious presence and blessings at the Walima reception of their beloved son.
+          </p>
+
+          <!-- Venue & Attire Info Grid -->
+          <div class="event-info-grid">
+            <!-- Venue Location -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">VENUE LOCATION</span>
+                <h4 class="info-val-title">The Imperial Emerald Palace Gardens</h4>
+                <p class="info-val-sub">77 Royal Boulevard, Cantonment Enclave</p>
+              </div>
+            </div>
+
+            <!-- Attire Suggestion -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-shirt"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">ATTIRE SUGGESTION</span>
+                <h4 class="info-val-title">Black Tie / Classic Royal Ethnic</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="event-card-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Grand+Walima+Reception%3A+Zayd+%26+Ayah&dates=20261219T140000Z/20261219T190000Z&details=Walima+Reception+of+Zayd+Tariq+Khan&location=The+Imperial+Emerald+Palace+Gardens" target="_blank" rel="noopener noreferrer" class="btn-pill-calendar">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Add to Google Calendar</span>
+            </a>
+
+            <a href="https://maps.google.com/?q=The+Imperial+Emerald+Palace+Gardens" target="_blank" rel="noopener noreferrer" class="btn-pill-directions">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>Get Directions</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ================= EVENT 3: FAMILY DUA & GATHERING ================= -->
+        <article class="modern-event-card">
+          <!-- Top Row: Title + Date/Time Badges -->
+          <div class="event-card-top">
+            <div class="event-title-group">
+              <span class="event-tag-roman">EVENT III</span>
+              <h3 class="event-card-title">Family Dua &amp; Gathering</h3>
+              <p class="event-arabic-title" dir="rtl">مجلس الدعاء والبركة</p>
+              <p class="event-card-subtitle">Seeking Allah's Endless Barakah for New Beginnings</p>
+            </div>
+
+            <div class="event-badges-stack">
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-calendar text-amber"></i>
+                <span>Sunday, 20 December 2026</span>
+              </div>
+              <div class="event-pill-badge">
+                <i class="fa-regular fa-clock text-amber"></i>
+                <span>11:00 AM - 02:00 PM (Lunch to follow)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="event-card-divider"></div>
+
+          <!-- Description -->
+          <p class="event-card-desc">
+            An intimate morning gathering with close elders and dear family for Quran Khwani, Tahajjud/Dua and heartfelt lunch.
+          </p>
+
+          <!-- Venue & Attire Info Grid -->
+          <div class="event-info-grid">
+            <!-- Venue Location -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">VENUE LOCATION</span>
+                <h4 class="info-val-title">Khan Residency (Groom's Residence)</h4>
+                <p class="info-val-sub">House 12, Noor Crescent, Green Park</p>
+              </div>
+            </div>
+
+            <!-- Attire Suggestion -->
+            <div class="event-info-item">
+              <div class="info-icon-amber">
+                <i class="fa-solid fa-shirt"></i>
+              </div>
+              <div class="info-text">
+                <span class="info-label">ATTIRE SUGGESTION</span>
+                <h4 class="info-val-title">Comfortable Traditional</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="event-card-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Family+Dua+%26+Gathering%3A+Zayd+%26+Ayah&dates=20261220T053000Z/20261220T083000Z&details=Family+Dua+Gathering&location=Khan+Residency" target="_blank" rel="noopener noreferrer" class="btn-pill-calendar">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Add to Google Calendar</span>
+            </a>
+
+            <a href="https://maps.google.com/?q=Noor+Crescent" target="_blank" rel="noopener noreferrer" class="btn-pill-directions">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>Get Directions</span>
+            </a>
+          </div>
+        </article>
 
       </div>
     </section>
@@ -398,12 +573,12 @@
             <i class="fa-solid fa-landmark-dome"></i>
             <span>Primary Wedding Venue</span>
           </div>
-          <h3 class="venue-name">The Royal Palm Grand Palace</h3>
-          <p class="venue-hall">Ballroom Noor &amp; Crystal Lawns</p>
+          <h3 class="venue-name">The Imperial Emerald Palace Gardens</h3>
+          <p class="venue-hall">77 Royal Boulevard, Cantonment Enclave</p>
           
           <div class="venue-address-box">
             <i class="fa-solid fa-map-pin"></i>
-            <p id="venueAddressText">Plot No. 42-A, Palace Boulevard, Near Heritage Clock Tower, Central Avenue, 560001</p>
+            <p id="venueAddressText">77 Royal Boulevard, Cantonment Enclave, Near Heritage Clock Tower, 560001</p>
           </div>
 
           <div class="venue-amenities">
@@ -414,7 +589,7 @@
           </div>
 
           <div class="venue-actions">
-            <a href="https://maps.google.com/?q=The+Royal+Palm+Palace+Wedding+Banquet" target="_blank" rel="noopener noreferrer" class="gold-cta-btn" id="openMapsLink">
+            <a href="https://maps.google.com/?q=The+Imperial+Emerald+Palace+Gardens" target="_blank" rel="noopener noreferrer" class="gold-cta-btn" id="openMapsLink">
               <i class="fa-solid fa-diamond-turn-right"></i>
               <span>Get Live Directions</span>
             </a>
@@ -459,29 +634,29 @@
           <div class="fam-header">
             <i class="fa-solid fa-shield-halved"></i>
             <h3>Groom's Family</h3>
-            <span class="fam-sub">House of Syed</span>
+            <span class="fam-sub">House of Khan</span>
           </div>
 
           <ul class="fam-list">
             <li>
               <strong>Paternal Grandparents:</strong>
-              <span>Late Syed Manzoor Ahmed &amp; Late Begum Salma</span>
+              <span>Late Janab Abdul Rehman Khan &amp; Begum Fatima Khan</span>
             </li>
             <li>
               <strong>Parents:</strong>
-              <span>Mr. Syed Tariq Ahmed &amp; Mrs. Parveen Tariq</span>
-            </li>
-            <li>
-              <strong>Uncles &amp; Aunts:</strong>
-              <span>Syed Nisar Ahmed, Syed Shakeel Ahmed &amp; Family</span>
+              <span>Mr. Tariq Jamil Khan &amp; Mrs. Parveen Tariq Khan</span>
             </li>
             <li>
               <strong>Brothers &amp; Sisters:</strong>
-              <span>Syed Bilal Ahmed, Syeda Sana Ahmed &amp; Syed Danish</span>
+              <span>Hamza Tariq Khan &amp; Dr. Saba, Ayesha Khan, Bilal Khan</span>
+            </li>
+            <li>
+              <strong>Uncles &amp; Aunts:</strong>
+              <span>Mr. &amp; Mrs. Imran Jamil Khan, Mr. &amp; Mrs. Salman Jamil Khan</span>
             </li>
             <li>
               <strong>With Best Compliments:</strong>
-              <span>All Ahmed, Qureshi &amp; Farooqui Family Members</span>
+              <span>All Khan, Qureshi &amp; Siddiqui Relatives and Well-Wishers</span>
             </li>
           </ul>
         </div>
@@ -491,29 +666,29 @@
           <div class="fam-header">
             <i class="fa-solid fa-feather-pointed"></i>
             <h3>Bride's Family</h3>
-            <span class="fam-sub">House of Khan</span>
+            <span class="fam-sub">House of Al-Mansoor</span>
           </div>
 
           <ul class="fam-list">
             <li>
-              <strong>Maternal &amp; Paternal Grandparents:</strong>
-              <span>Late Al-Haj Abdul Rasheed Khan &amp; Begum Raziya</span>
+              <strong>Grandparents:</strong>
+              <span>Late Haji Ghulam Mohammad &amp; Begum Zubeda Khatoon</span>
             </li>
             <li>
               <strong>Parents:</strong>
-              <span>Mr. Mohammad Farooq Khan &amp; Mrs. Yasmeen Farooq</span>
-            </li>
-            <li>
-              <strong>Uncles &amp; Aunts:</strong>
-              <span>Mohammad Altaf Khan, Mohammad Salman Khan &amp; Family</span>
+              <span>Mr. Farooq Ahmad Al-Mansoor &amp; Mrs. Yasmeen Mansoor</span>
             </li>
             <li>
               <strong>Brothers &amp; Sisters:</strong>
-              <span>Hamza Farooq Khan, Mehreen Fatima &amp; Zoya Khan</span>
+              <span>Zain Al-Mansoor, Maryam Al-Mansoor &amp; Sara Al-Mansoor</span>
+            </li>
+            <li>
+              <strong>Uncles &amp; Aunts:</strong>
+              <span>Mr. &amp; Mrs. Khalid Al-Mansoor &amp; Family</span>
             </li>
             <li>
               <strong>With Best Compliments:</strong>
-              <span>All Khan, Pathan &amp; Siddiqui Relatives and Well-Wishers</span>
+              <span>All Al-Mansoor, Baig &amp; Hashmi Relatives</span>
             </li>
           </ul>
         </div>
@@ -545,7 +720,7 @@
         <span class="sub-heading">Your Gracious Presence</span>
         <h2 class="main-heading">RSVP &amp; Send Your Duas</h2>
         <div class="gold-filigree-divider"></div>
-        <p class="section-desc">Kindly honor us by confirming your attendance and leaving a warm blessing for Zayan &amp; Aiza.</p>
+        <p class="section-desc">Kindly honor us by confirming your attendance and leaving a warm blessing for Zayd &amp; Ayah.</p>
       </div>
 
       <div class="rsvp-layout">
@@ -554,7 +729,7 @@
           <form id="rsvpForm">
             <div class="form-group">
               <label for="rsvpName"><i class="fa-solid fa-user"></i> Full Name / Family Title</label>
-              <input type="text" id="rsvpName" name="name" class="form-input" placeholder="e.g. Dr. Rashid &amp; Family" required>
+              <input type="text" id="rsvpName" name="name" class="form-input" placeholder="e.g. Uncle Rashid &amp; Family" required>
             </div>
 
             <div class="form-row">
@@ -592,13 +767,12 @@
           </div>
           
           <div class="duas-scroll-container" id="duasContainer">
-            <!-- Sample Existing Blessings (Interactive storage adds more) -->
             <div class="dua-bubble">
               <div class="dua-sender">
                 <strong>Uncle Farooq &amp; Family</strong>
                 <span class="dua-time">Attending • 4 Guests</span>
               </div>
-              <p class="dua-msg">"Masha'Allah! May Allah Ta'ala bless Zayan and Aiza with a marriage filled with barakah, love, peace, and righteous progeny. Looking forward to celebrating with you all!"</p>
+              <p class="dua-msg">"Masha'Allah! May Allah Ta'ala bless Zayd and Ayah with a marriage filled with barakah, love, peace, and righteous progeny. Looking forward to celebrating with you all!"</p>
             </div>
 
             <div class="dua-bubble">
@@ -614,7 +788,7 @@
                 <strong>Zainab &amp; Hamza (Cousins)</strong>
                 <span class="dua-time">Attending • 3 Guests</span>
               </div>
-              <p class="dua-msg">"So thrilled for our brother Zayan and sister Aiza! Barakallahu lakuma, counting down the days for the festivities!"</p>
+              <p class="dua-msg">"So thrilled for our brother Zayd and sister Ayah! Barakallahu lakuma, counting down the days for the festivities!"</p>
             </div>
           </div>
         </div>
@@ -644,7 +818,7 @@
         <div class="footer-seal">
           <img src="assets/gold_seal.jpg" alt="Nikah Emblem" class="footer-seal-img">
         </div>
-        <h4 class="footer-names">Syed Zayan &amp; Aiza Fatima</h4>
+        <h4 class="footer-names">Zayd Tariq Khan &amp; Ayah Farooq Al-Mansoor</h4>
         <p class="footer-dua">"O Allah, bind their hearts together with the love and harmony that You bestowed upon Prophet Muhammad (ﷺ) and Khadijah (RA)."</p>
         
         <div class="footer-links">
@@ -653,7 +827,7 @@
           <a href="#rsvpSection"><i class="fa-solid fa-calendar-check"></i> RSVP</a>
         </div>
 
-        <p class="footer-copy">&copy; 2026 Syed &amp; Khan Families. All blessings reserved.</p>
+        <p class="footer-copy">&copy; 2026 Khan &amp; Al-Mansoor Families. All blessings reserved.</p>
       </div>
     </footer>
 

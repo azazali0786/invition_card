@@ -1,20 +1,19 @@
 /**
  * Main Application Logic for Muslim Royal Wedding Invitation
- * Handles Envelope 3D Animation, URL Personalization, Modal Generator,
- * WhatsApp Pre-filled Links, Countdown Timer, Calendar .ics export, and RSVP Duas Wall.
+ * Handles Open Invitation button, celebratory stars spreading animation,
+ * URL Personalization, Modal Generator, WhatsApp Pre-filled Links,
+ * Countdown Timer, Calendar .ics export, and RSVP Duas Wall.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // Elements
   const body = document.body;
   const envelopeOverlay = document.getElementById('envelopeOverlay');
-  const waxSealBtn = document.getElementById('waxSealBtn');
-  const waxSealImg = document.getElementById('waxSealImg');
+  const openInvitationBtn = document.getElementById('openInvitationBtn');
   const audioToggleBtn = document.getElementById('audioToggleBtn');
   const reopenEnvelopeBtn = document.getElementById('reopenEnvelopeBtn');
   
   // Guest Personalization Targets
-  const envelopeGuestPrefix = document.getElementById('envelopeGuestPrefix');
   const envelopeGuestName = document.getElementById('envelopeGuestName');
   const mainGuestPrefix = document.getElementById('mainGuestPrefix');
   const mainGuestName = document.getElementById('mainGuestName');
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // State
   let currentGuest = {
     prefix: 'Dearest',
-    name: 'Honored Guest & Family'
+    name: 'Uncle Rashid & Family'
   };
 
   /* --------------------------------------------------
@@ -74,48 +73,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function applyGuestToUI(prefix, name) {
-    if (envelopeGuestPrefix) envelopeGuestPrefix.textContent = `Especially Prepared For:`;
-    if (envelopeGuestName) envelopeGuestName.textContent = `${prefix} ${name}`;
+    if (envelopeGuestName) envelopeGuestName.textContent = `${name}`;
     if (mainGuestPrefix) mainGuestPrefix.textContent = prefix;
     if (mainGuestName) mainGuestName.textContent = name;
-    if (rsvpNameInput && (!rsvpNameInput.value || rsvpNameInput.value === 'Honored Guest & Family')) {
+    if (rsvpNameInput && (!rsvpNameInput.value || rsvpNameInput.value === 'Uncle Rashid & Family')) {
       rsvpNameInput.value = `${prefix} ${name}`;
     }
 
     // Update modal fields
     if (customPrefixInput) customPrefixInput.value = prefix;
-    if (customGuestInput) customGuestInput.value = (name === 'Honored Guest & Family' ? '' : name);
+    if (customGuestInput) customGuestInput.value = (name === 'Uncle Rashid & Family' ? '' : name);
     updateModalPreviewAndUrl();
   }
 
   /* --------------------------------------------------
-     2. ENVELOPE OPENING ANIMATION & AUDIO CHIME
+     2. "OPEN INVITATION" CLICK & STARS SPREADING ANIMATION
      -------------------------------------------------- */
   let isEnvelopeOpened = false;
 
-  function openEnvelope() {
+  function handleOpenInvitation() {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
 
-    // Get seal coordinates for sparkle burst
-    const rect = waxSealImg ? waxSealImg.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
-    const burstX = rect.left + rect.width / 2;
-    const burstY = rect.top + rect.height / 2;
-
-    // Trigger visual sparkles & audio chime
-    if (window.triggerSparkleBurst) {
-      window.triggerSparkleBurst(burstX, burstY);
+    // Trigger celebratory star spreading explosion from the 2 sides (left & right)
+    if (window.triggerStarCelebration) {
+      window.triggerStarCelebration();
     }
+
+    // Play wedding ambient chime and start tranquil background melody
     if (window.weddingAudio) {
       window.weddingAudio.playSealBreakChime();
-      // Auto start soft ambient music if user clicked
       window.weddingAudio.start();
     }
 
-    // Step 1: Flap opening and letter slide
+    // Envelope flap folding animation
     envelopeOverlay.classList.add('opening');
 
-    // Step 2: Fade envelope out and reveal main invitation
+    // Smooth transition to main invitation
     setTimeout(() => {
       envelopeOverlay.classList.add('opened');
       body.classList.remove('envelope-active');
@@ -123,14 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1100);
   }
 
-  if (waxSealBtn) {
-    waxSealBtn.addEventListener('click', openEnvelope);
-    waxSealBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openEnvelope();
-      }
-    });
+  if (openInvitationBtn) {
+    openInvitationBtn.addEventListener('click', handleOpenInvitation);
   }
 
   if (reopenEnvelopeBtn) {
@@ -178,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateModalPreviewAndUrl() {
     const prefix = customPrefixInput.value || 'Dearest';
-    const rawName = customGuestInput.value.trim() || 'Honored Guest & Family';
+    const rawName = customGuestInput.value.trim() || 'Uncle Rashid & Family';
 
     previewPrefixText.textContent = prefix;
     previewNameText.textContent = rawName;
@@ -204,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (applyPreviewOnlyBtn) {
     applyPreviewOnlyBtn.addEventListener('click', () => {
       const prefix = customPrefixInput.value || 'Dearest';
-      const name = customGuestInput.value.trim() || 'Honored Guest & Family';
+      const name = customGuestInput.value.trim() || 'Uncle Rashid & Family';
       applyGuestToUI(prefix, name);
       closeModal();
       showToast(`Applied invite for ${prefix} ${name}`);
@@ -219,11 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const message = customMessage || 
       `Assalamu Alaikum Warahmatullah!\n\n` +
-      `We cordially invite you, *${prefix} ${name}*, and your honorable family to celebrate the auspicious Nikah & Wedding ceremony of our beloved:\n\n` +
-      `💍 *Syed Zayan & Aiza Fatima*\n\n` +
-      `📅 *Date:* Sunday, 15th November 2026\n` +
-      `📍 *Venue:* The Royal Palm Grand Palace\n\n` +
-      `Kindly open your personalized royal digital invitation with the interactive envelope here:\n` +
+      `We cordially invite you, *${prefix} ${name}*, and your honorable family to celebrate the auspicious Baraat, Nikah & Walima ceremony of our beloved:\n\n` +
+      `💍 *Zayd Tariq Khan & Ayah Farooq Al-Mansoor*\n\n` +
+      `📅 *Date:* Friday & Saturday, 18 - 19 December 2026\n` +
+      `📍 *Venue:* The Imperial Emerald Palace Gardens\n\n` +
+      `Kindly tap here to view your royal digital invitation with the interactive envelope:\n` +
       `${inviteUrl}\n\n` +
       `Looking forward to your gracious presence and heartfelt Duas!`;
 
@@ -241,14 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --------------------------------------------------
      5. COUNTDOWN TIMER ENGINE
+     Target: Friday, December 18, 2026, 6:30 PM
      -------------------------------------------------- */
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
   const cdSeconds = document.getElementById('cdSeconds');
 
-  // Nikah Target: November 15, 2026, 11:30 AM
-  const weddingDate = new Date('2026-11-15T11:30:00').getTime();
+  const weddingDate = new Date('2026-12-18T18:30:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -281,10 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
      -------------------------------------------------- */
   if (addToCalBtn) {
     addToCalBtn.addEventListener('click', () => {
-      const title = encodeURIComponent("Nikah Ceremony: Syed Zayan & Aiza Fatima");
-      const details = encodeURIComponent("You are cordially invited to celebrate the Nikah and Wedding banquet of Syed Zayan & Aiza Fatima.");
-      const location = encodeURIComponent("The Royal Palm Grand Palace, Ballroom Noor, MG Road, 560001");
-      const dates = "20261115T060000Z/20261115T120000Z"; // UTC format
+      const title = encodeURIComponent("Baraat & Sacred Nikah: Zayd & Ayah");
+      const details = encodeURIComponent("You are cordially invited to celebrate the Baraat, Nikah, and Walima of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.");
+      const location = encodeURIComponent("The Imperial Emerald Palace Gardens, 77 Royal Boulevard, Cantonment Enclave");
+      const dates = "20261218T130000Z/20261219T180000Z"; // UTC format
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
       window.open(googleCalUrl, '_blank');
     });
@@ -295,15 +283,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const icsContent = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Zayan & Aiza//Wedding Invitation//EN",
+        "PRODID:-//Zayd & Ayah//Wedding Invitation//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         "BEGIN:VEVENT",
-        "SUMMARY:Nikah Ceremony: Syed Zayan & Aiza Fatima",
-        "DESCRIPTION:In the name of Allah, Most Gracious, Most Merciful. Wedding & Nikah of Syed Zayan & Aiza Fatima.",
-        "LOCATION:The Royal Palm Grand Palace, Ballroom Noor, MG Road",
-        "DTSTART:20261115T113000",
-        "DTEND:20261115T170000",
+        "SUMMARY:Baraat & Sacred Nikah: Zayd & Ayah",
+        "DESCRIPTION:In the name of Allah, Most Gracious, Most Merciful. Wedding & Nikah of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.",
+        "LOCATION:The Imperial Emerald Palace Gardens, 77 Royal Boulevard, Cantonment Enclave",
+        "DTSTART:20261218T183000",
+        "DTEND:20261219T230000",
         "STATUS:CONFIRMED",
         "END:VEVENT",
         "END:VCALENDAR"
@@ -312,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Nikah_Zayan_Aiza.ics');
+      link.setAttribute('download', 'Nikah_Zayd_Ayah.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -332,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------
      8. RSVP FORM & DUAS WALL (LOCALSTORAGE SYNC)
      -------------------------------------------------- */
-  const DUAS_STORAGE_KEY = 'wedding_duas_list_v1';
+  const DUAS_STORAGE_KEY = 'wedding_duas_list_v2';
 
   function loadSavedDuas() {
     try {
