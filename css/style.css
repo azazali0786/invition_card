@@ -13,7 +13,7 @@
   --bg-deep-emerald: #061813;
   --bg-card-emerald: rgba(8, 38, 29, 0.92);
   --bg-accent-emerald: #0f3528;
-  
+
   /* Gold Accents & Gradients */
   --gold-primary: #dfab52;
   --gold-light: #f7e7be;
@@ -21,7 +21,7 @@
   --gold-glow: rgba(223, 171, 82, 0.45);
   --gold-gradient: linear-gradient(135deg, #fceec5 0%, #dfab52 45%, #b38531 100%);
   --gold-button-gradient: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
-  
+
   /* Text Colors */
   --text-pure-white: #ffffff;
   --text-ivory: #fcf8f0;
@@ -48,7 +48,9 @@
 /* --------------------------------------------------
    2. GLOBAL RESET & BASE STYLES
    -------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -71,21 +73,25 @@ body {
 }
 
 body.envelope-active {
-  overflow: hidden; /* Lock scroll while envelope is active */
+  overflow: hidden;
+  /* Lock scroll while envelope is active */
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark-emerald);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--gold-deep);
   border-radius: 6px;
   border: 2px solid var(--bg-dark-emerald);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-primary);
 }
@@ -216,6 +222,7 @@ body.envelope-active {
   color: #25d366;
   border-color: rgba(37, 211, 102, 0.4);
 }
+
 .whatsapp-nav-btn:hover {
   background: #25d366;
   color: #fff;
@@ -250,9 +257,17 @@ body.envelope-active {
 }
 
 @keyframes pulseGold {
-  0% { box-shadow: 0 0 0 0 rgba(223, 171, 82, 0.6); }
-  70% { box-shadow: 0 0 0 12px rgba(223, 171, 82, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(223, 171, 82, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(223, 171, 82, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(223, 171, 82, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(223, 171, 82, 0);
+  }
 }
 
 /* --------------------------------------------------
@@ -330,17 +345,24 @@ body.envelope-active {
   animation: lanternSway 4s ease-in-out infinite alternate;
   transform-origin: top center;
 }
+
 .left-lantern {
   left: 15px;
   animation-delay: -1.5s;
 }
+
 .right-lantern {
   right: 15px;
 }
 
 @keyframes lanternSway {
-  0% { transform: rotate(-3.5deg); }
-  100% { transform: rotate(3.5deg); }
+  0% {
+    transform: rotate(-3.5deg);
+  }
+
+  100% {
+    transform: rotate(3.5deg);
+  }
 }
 
 .lantern-string {
@@ -370,8 +392,18 @@ body.envelope-active {
 }
 
 @keyframes lanternFlicker {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.15); filter: blur(3px); }
+
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: blur(3px);
+  }
 }
 
 /* 3D Envelope Container */
@@ -594,8 +626,13 @@ body.envelope-active {
 }
 
 @keyframes sparkleSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .envelope-audio-notice {
@@ -607,6 +644,7 @@ body.envelope-active {
   color: rgba(251, 191, 36, 0.7);
   font-weight: 300;
 }
+
 .envelope-audio-notice i {
   color: #f59e0b;
 }
@@ -678,8 +716,13 @@ body.envelope-active {
 }
 
 @keyframes subtleZoom {
-  0% { transform: scale(1.02); }
-  100% { transform: scale(1.08); }
+  0% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
 }
 
 .hero-overlay-gradient {
@@ -732,10 +775,34 @@ body.envelope-active {
   border-color: var(--gold-primary);
   pointer-events: none;
 }
-.corner-tl { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
-.corner-tr { top: 8px; right: 8px; border-top: 2px solid; border-right: 2px solid; }
-.corner-bl { bottom: 8px; left: 8px; border-bottom: 2px solid; border-left: 2px solid; }
-.corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.corner-tl {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-tr {
+  top: 8px;
+  right: 8px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.corner-bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
 
 .verse-ornament-center {
   color: var(--gold-primary);
@@ -760,6 +827,7 @@ body.envelope-active {
   color: var(--gold-primary);
   font-size: 0.8rem;
 }
+
 .gold-divider-mini span {
   width: 50px;
   height: 1px;
@@ -935,11 +1003,13 @@ body.envelope-active {
   border: 1px dashed var(--gold-primary);
   pointer-events: none;
 }
+
 .outer-ring {
   width: 95px;
   height: 95px;
   animation: rotateClockwise 25s linear infinite;
 }
+
 .inner-ring {
   width: 82px;
   height: 82px;
@@ -948,12 +1018,23 @@ body.envelope-active {
 }
 
 @keyframes rotateClockwise {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
+
 @keyframes rotateCounter {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 .union-icon {
@@ -1046,12 +1127,14 @@ section {
   height: 18px;
   margin: 14px auto 0;
   background-image: radial-gradient(circle, var(--gold-primary) 35%, transparent 40%),
-                    radial-gradient(circle, var(--gold-light) 35%, transparent 40%);
+    radial-gradient(circle, var(--gold-light) 35%, transparent 40%);
   background-size: 12px 12px;
   background-position: center;
   position: relative;
 }
-.gold-filigree-divider::before, .gold-filigree-divider::after {
+
+.gold-filigree-divider::before,
+.gold-filigree-divider::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -1059,8 +1142,15 @@ section {
   height: 1.5px;
   background: linear-gradient(to right, transparent, var(--gold-primary));
 }
-.gold-filigree-divider::before { left: 0; }
-.gold-filigree-divider::after { right: 0; background: linear-gradient(to left, transparent, var(--gold-primary)); }
+
+.gold-filigree-divider::before {
+  left: 0;
+}
+
+.gold-filigree-divider::after {
+  right: 0;
+  background: linear-gradient(to left, transparent, var(--gold-primary));
+}
 
 .section-desc {
   max-width: 650px;
@@ -1122,7 +1212,7 @@ section {
   text-align: center;
   font-size: 1.1rem;
   color: var(--text-ivory);
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
 
 .nikah-date-text strong {
@@ -1895,6 +1985,7 @@ label i {
   font-size: 0.85rem;
   transition: color 0.3s ease;
 }
+
 .footer-links a:hover {
   color: var(--gold-light);
 }
@@ -1951,6 +2042,7 @@ label i {
   cursor: pointer;
   line-height: 1;
 }
+
 .modal-close-btn:hover {
   color: #fff;
 }
@@ -2027,6 +2119,7 @@ label i {
   cursor: pointer;
   transition: var(--transition-smooth);
 }
+
 .copy-url-btn:hover {
   background: var(--gold-primary);
   color: #061814;
@@ -2045,6 +2138,7 @@ label i {
   color: #fff;
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
 }
+
 .share-wa-btn:hover {
   background: #1eb857;
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
@@ -2079,15 +2173,29 @@ label i {
 /* --------------------------------------------------
    17. SCROLL REVEAL ANIMATIONS
    -------------------------------------------------- */
-.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right {
+.reveal-fade,
+.reveal-slide-up,
+.reveal-slide-left,
+.reveal-slide-right {
   opacity: 0;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal-fade { transform: translateY(0); }
-.reveal-slide-up { transform: translateY(40px); }
-.reveal-slide-left { transform: translateX(-40px); }
-.reveal-slide-right { transform: translateX(40px); }
+.reveal-fade {
+  transform: translateY(0);
+}
+
+.reveal-slide-up {
+  transform: translateY(40px);
+}
+
+.reveal-slide-left {
+  transform: translateX(-40px);
+}
+
+.reveal-slide-right {
+  transform: translateX(40px);
+}
 
 .revealed {
   opacity: 1 !important;
@@ -2102,24 +2210,33 @@ label i {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+
   .union-emblem {
     order: 2;
   }
+
   .groom-card {
     order: 1;
   }
+
   .bride-card {
     order: 3;
   }
-  .venue-grid, .family-grid, .rsvp-layout {
+
+  .venue-grid,
+  .family-grid,
+  .rsvp-layout {
     grid-template-columns: 1fr;
   }
+
   .event-card-top {
     flex-direction: column;
   }
+
   .event-info-grid {
     grid-template-columns: 1fr;
   }
+
   .banner-inner {
     flex-direction: column;
     text-align: center;
@@ -2130,52 +2247,67 @@ label i {
   .bismillah-arabic {
     font-size: 2rem;
   }
+
   .verse-arabic {
     font-size: 1.35rem;
     line-height: 1.8;
   }
+
   .verse-english {
     font-size: 0.95rem;
   }
+
   .guest-salute-name {
     font-size: 1.7rem;
   }
+
   .count-box {
     width: 72px;
     height: 80px;
   }
+
   .count-num {
     font-size: 1.8rem;
   }
+
   .count-divider {
     display: none;
   }
+
   .envelope {
     height: 310px;
   }
+
   .envelope-left {
     border-width: 155px 0 155px 180px;
   }
+
   .envelope-right {
     border-width: 155px 180px 155px 0;
   }
+
   .envelope-bottom {
     border-width: 0 180px 160px 180px;
   }
+
   .envelope-top {
     border-width: 160px 180px 0 180px;
   }
+
   .event-card-title {
     font-size: 1.55rem;
   }
+
   .event-pill-badge {
     white-space: normal;
     font-size: 0.78rem;
   }
+
   .open-invitation-btn {
     padding: 10px 20px;
     gap: 8px;
   }
+
   .btn-text-label {
     font-size: 0.8rem;
     letter-spacing: 0.12em;
@@ -2198,6 +2330,7 @@ body.guest-mode .admin-only {
   align-items: center;
   gap: 5px;
 }
+
 .host-login-link:hover {
   opacity: 1;
   color: var(--gold-light) !important;
@@ -2217,14 +2350,17 @@ body.guest-mode .admin-only {
   margin: 14px auto 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
+
 .admin-indicator-badge i {
   color: #f59e0b;
 }
+
 .admin-indicator-badge a {
   color: #f59e0b;
   text-decoration: underline;
   cursor: pointer;
 }
+
 .admin-indicator-badge a:hover {
   color: #ffffff;
 }
