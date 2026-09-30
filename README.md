@@ -1,5 +1,5 @@
 # 👑 Royal Islamic Wedding Digital Invitation Card
-### *Zayd Tariq Khan & Ayah Farooq Al-Mansoor*
+### *Ayan Alvi & Tehreem Alvi*
 
 A state-of-the-art, luxury interactive digital wedding invitation designed specifically for a Muslim marriage celebration. Features rich emerald velvet & gold foil aesthetics, 3D envelope opening animation with dual-side star cannons, encrypted guest invitation links, role separation (Admin vs. Guest), Google Maps navigation, RSVP with a Duas wall, and direct WhatsApp contact.
 
@@ -20,7 +20,7 @@ A state-of-the-art, luxury interactive digital wedding invitation designed speci
 
 ---
 
-### 2. 🛡️ Strict Guest Mode (No Guest Link Creator for Guests)
+## 2. 🛡️ Strict Guest Mode (No Guest Link Creator for Guests)
 - **For Guests (when opening `?inv=...`)**:
   - The **"Create Guest Link"** button in the top navigation bar is **completely hidden**.
   - The bottom banner (*"Want to send this invitation to your relatives & friends?"*) is **completely hidden**.
@@ -32,28 +32,29 @@ A state-of-the-art, luxury interactive digital wedding invitation designed speci
 
 ---
 
-### 3. 💬 WhatsApp Integration & Redirection
+## 3. 💬 WhatsApp Integration & Redirection
 - **For Guests**:
   - The WhatsApp button in the navigation bar redirects directly to chat with the host family at phone number: **`+91 8800646224`** (`8800646224`).
   - Pre-fills a polite message:
-    *"Assalamu Alaikum! Thank you so much for the royal wedding invitation for Zayd & Ayah. From: [Guest Name]"*
+    *"Assalamu Alaikum! Thank you so much for the royal wedding invitation for Ayan & Tehreem. From: [Guest Name]"*
 - **For Admin**:
   - The WhatsApp button opens the invitation generator and shares the pre-formatted royal invitation with the **encrypted link** to invited guests.
 
 ---
 
-### 4. 🌟 "OPEN INVITATION" Button & Dual-Side Star Cannons
+## 4. 🌟 "OPEN INVITATION" Button & Dual-Side Star Cannons
 - Stadium pill button with glowing amber-gold gradient, open envelope icon, uppercase serif text, and spinning sparkle star.
 - When clicked, celebratory 5-point gold & emerald stars fire strictly from the **left and right edges** inward and upward.
 - The center and envelope area remain clear and unobstructed.
 
 ---
 
-### 5. 📜 Modern Event Cards
-- Event I: **Baraat & Sacred Nikah** (Friday, 18 December 2026)
-- Event II: **Grand Walima Reception** (Saturday, 19 December 2026) with special banner: **`Groom's Family Reception (Sunnah-e-Walima)`**
-- Event III: **Family Dua & Gathering** (Sunday, 20 December 2026)
-- Includes date & time pill badges, venue location (The Grand Royal Crystal Ballroom / Imperial Emerald Palace Gardens), attire suggestions, Google Calendar sync, and directions.
+## 5. 📜 Main Celebration & Itinerary (Wednesday, 21 October 2026)
+- **Baraat Ravangi**: 06:00 PM (Departure from Village "Oledha")
+- **Sacred Nikah**: 08:00 PM
+- **Khana (Dinner)**: 09:00 PM (Royal Dawat-e-Ta'am)
+- **Waapsi**: 10:00 PM (Rukhsati / Return)
+- **Venue**: The White Rose Palace, Main Daadri Road, near Haldoni Mode, Kuleshra, Greater Noida, Gautam Buddh Nagar
 
 ---
 

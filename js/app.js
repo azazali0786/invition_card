@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Guest clicks to message host family
   function contactHostOnWhatsApp() {
     const guestGreeting = currentGuest.name ? ` From: ${currentGuest.name}` : '';
-    const message = `Assalamu Alaikum! Thank you so much for the royal wedding invitation for Zayd & Ayah.${guestGreeting}`;
+    const message = `Assalamu Alaikum! Thank you so much for the royal wedding invitation for Ayan & Tehreem.${guestGreeting}`;
     const waLink = `https://api.whatsapp.com/send?phone=${HOST_FAMILY_PHONE}&text=${encodeURIComponent(message)}`;
     window.open(waLink, '_blank');
   }
@@ -349,12 +349,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const message = 
       `Assalamu Alaikum Warahmatullah!\n\n` +
-      `We cordially invite you, *${prefix} ${name}*, and your honorable family to celebrate the auspicious Baraat, Nikah & Walima ceremony of our beloved:\n\n` +
-      `💍 *Zayd Tariq Khan & Ayah Farooq Al-Mansoor*\n\n` +
-      `📅 *Date:* Friday & Saturday, 18 - 19 December 2026\n` +
-      `📍 *Venue:* The Imperial Emerald Palace Gardens\n\n` +
+      `We cordially invite you, *${prefix} ${name}*, and your honorable family to celebrate the auspicious Baraat & Sacred Nikah ceremony of our beloved:\n\n` +
+      `💍 *Ayan Alvi & Tehreem Alvi*\n\n` +
+      `📅 *Date:* Wednesday, 21 October 2026\n` +
+      `⏰ *Program Timings:*\n` +
+      `  • 06:00 PM - Baraat Ravangi (from Village Oledha)\n` +
+      `  • 08:00 PM - Sacred Nikah\n` +
+      `  • 09:00 PM - Khana (Royal Dinner)\n` +
+      `  • 10:00 PM - Waapsi\n\n` +
+      `📍 *Venue:* The White Rose Palace, Main Daadri Road, near Haldoni Mode, Kuleshra, Greater Noida, Gautam Buddh Nagar\n` +
+      `🗺️ *Venue Map:* https://maps.google.com/?q=28.532343,77.445969\n\n` +
       `Kindly tap here to view your royal digital invitation with the interactive envelope:\n` +
       `${inviteUrl}\n\n` +
+      `With best compliments from Mo. Nosad & Alvi Family.\n` +
       `Looking forward to your gracious presence and heartfelt Duas!`;
 
     const waLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
@@ -400,14 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --------------------------------------------------
      8. COUNTDOWN TIMER ENGINE
-     Target: Friday, December 18, 2026, 6:30 PM
+     Target: Wednesday, October 21, 2026, 8:00 PM
      -------------------------------------------------- */
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
   const cdSeconds = document.getElementById('cdSeconds');
 
-  const weddingDate = new Date('2026-12-18T18:30:00').getTime();
+  const weddingDate = new Date('2026-10-21T20:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -440,10 +447,10 @@ document.addEventListener('DOMContentLoaded', () => {
      -------------------------------------------------- */
   if (addToCalBtn) {
     addToCalBtn.addEventListener('click', () => {
-      const title = encodeURIComponent("Baraat & Sacred Nikah: Zayd & Ayah");
-      const details = encodeURIComponent("You are cordially invited to celebrate the Baraat, Nikah, and Walima of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.");
-      const location = encodeURIComponent("The Imperial Emerald Palace Gardens, 77 Royal Boulevard, Cantonment Enclave");
-      const dates = "20261218T130000Z/20261219T180000Z";
+      const title = encodeURIComponent("Baraat & Sacred Nikah: Ayan & Tehreem");
+      const details = encodeURIComponent("You are cordially invited to celebrate the Baraat & Sacred Nikah of Ayan Alvi & Tehreem Alvi. Schedule: 06:00 PM Baraat Ravangi (from Village Oledha), 08:00 PM Nikah, 09:00 PM Khana, 10:00 PM Waapsi.");
+      const location = encodeURIComponent("The White Rose Palace, Main Daadri Road, near Haldoni Mode, Kuleshra, Greater Noida, Gautam Buddh Nagar");
+      const dates = "20261021T123000Z/20261021T173000Z";
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
       window.open(googleCalUrl, '_blank');
     });
@@ -454,15 +461,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const icsContent = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Zayd & Ayah//Wedding Invitation//EN",
+        "PRODID:-//Ayan & Tehreem//Wedding Invitation//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         "BEGIN:VEVENT",
-        "SUMMARY:Baraat & Sacred Nikah: Zayd & Ayah",
-        "DESCRIPTION:In the name of Allah, Most Gracious, Most Merciful. Wedding & Nikah of Zayd Tariq Khan & Ayah Farooq Al-Mansoor.",
-        "LOCATION:The Imperial Emerald Palace Gardens, 77 Royal Boulevard, Cantonment Enclave",
-        "DTSTART:20261218T183000",
-        "DTEND:20261219T230000",
+        "SUMMARY:Baraat & Sacred Nikah: Ayan & Tehreem",
+        "DESCRIPTION:In the name of Allah, Most Gracious, Most Merciful. Wedding & Nikah of Ayan Alvi & Tehreem Alvi. Schedule: 06:00 PM Baraat Ravangi (from Village Oledha), 08:00 PM Nikah, 09:00 PM Khana, 10:00 PM Waapsi.",
+        "LOCATION:The White Rose Palace, Main Daadri Road, near Haldoni Mode, Kuleshra, Greater Noida, Gautam Buddh Nagar",
+        "DTSTART:20261021T180000",
+        "DTEND:20261021T230000",
         "STATUS:CONFIRMED",
         "END:VEVENT",
         "END:VCALENDAR"
@@ -471,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Nikah_Zayd_Ayah.ics');
+      link.setAttribute('download', 'Nikah_Ayan_Tehreem.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
