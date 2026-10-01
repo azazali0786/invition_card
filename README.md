@@ -28,17 +28,23 @@ A state-of-the-art, luxury interactive digital wedding invitation designed speci
 - **For Admin / Host**:
   - Visiting the base URL or adding `?admin=true` enables **Admin Mode**.
   - The **"Create Guest Link"** button and generator modal are active.
-  - Hosts can also click the discreet **"Host Login"** lock in the footer and enter their admin passcode (`8800` or family phone `8800646224`).
+  - Hosts can also click the discreet **"Host Login"** lock in the footer and enter their admin passcode (`9250` or family phone `9250161314`).
 
 ---
 
-## 3. 💬 WhatsApp Integration & Redirection
+## 3. 💬 WhatsApp & Family Contact Helplines
 - **For Guests**:
-  - The WhatsApp button in the navigation bar redirects directly to chat with the host family at phone number: **`+91 8800646224`** (`8800646224`).
+  - The WhatsApp button in the navigation bar redirects directly to chat with the host family at phone number: **`+91 9250161314`** (`9250161314`).
   - Pre-fills a polite message:
     *"Assalamu Alaikum! Thank you so much for the royal wedding invitation for Ayan & Tehreem. From: [Guest Name]"*
+  - Dedicated RSVP & Helpline phone numbers available directly on the invitation:
+    - **`9250161314`** (Call & WhatsApp)
+    - **`9837130784`**
+    - **`9311705692`**
+    - **`8010873456`**
+    - **`7428156376`**
 - **For Admin**:
-  - The WhatsApp button opens the invitation generator and shares the pre-formatted royal invitation with the **encrypted link** to invited guests.
+  - The WhatsApp button opens the invitation generator and shares the pre-formatted royal invitation with the **encrypted link** and all family contact numbers to invited guests.
 
 ---
 

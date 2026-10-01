@@ -2538,3 +2538,215 @@ body.guest-mode .admin-only {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   FAMILY & RSVP CONTACT HELPLINE STYLES
+   ========================================================================== */
+.fam-rsvp-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(223, 171, 82, 0.25);
+}
+
+.fam-phone-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fam-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(223, 171, 82, 0.1);
+  border: 1px solid rgba(223, 171, 82, 0.3);
+  color: var(--gold-light);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: var(--transition-smooth);
+}
+
+.fam-chip:hover {
+  background: rgba(223, 171, 82, 0.25);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(223, 171, 82, 0.25);
+  color: #ffffff;
+}
+
+.fam-chip.fam-wa {
+  background: rgba(37, 211, 102, 0.12);
+  border-color: rgba(37, 211, 102, 0.4);
+  color: #4ade80;
+}
+
+.fam-chip.fam-wa:hover {
+  background: rgba(37, 211, 102, 0.25);
+  border-color: #25d366;
+  color: #ffffff;
+}
+
+/* RSVP Contacts Card */
+.rsvp-contacts-card {
+  margin-top: 36px;
+  padding: 26px 30px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(8, 38, 29, 0.95), rgba(4, 22, 17, 0.98));
+  border: 1px solid rgba(223, 171, 82, 0.3);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
+}
+
+.contact-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.contact-top-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #020b08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px var(--gold-glow);
+  flex-shrink: 0;
+}
+
+.contact-top-text h3 {
+  font-family: var(--font-royal);
+  color: var(--gold-light);
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.contact-top-text p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(223, 171, 82, 0.22);
+  text-decoration: none;
+  color: var(--text-ivory);
+  transition: var(--transition-smooth);
+}
+
+.contact-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-primary);
+  background: rgba(223, 171, 82, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contact-item.primary-wa-chip {
+  border-color: rgba(37, 211, 102, 0.45);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.12), rgba(8, 38, 29, 0.7));
+}
+
+.contact-item.primary-wa-chip:hover {
+  border-color: #25d366;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(8, 38, 29, 0.8));
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.25);
+}
+
+.item-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(223, 171, 82, 0.15);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.contact-item:hover .item-icon-box {
+  background: var(--gold-gradient);
+  color: #020b08;
+}
+
+.item-icon-box.wa-icon {
+  background: rgba(37, 211, 102, 0.2);
+  color: #25d366;
+}
+
+.contact-item:hover .item-icon-box.wa-icon {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-phone {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-pure-white);
+  letter-spacing: 0.5px;
+}
+
+.item-tag {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.primary-wa-chip .item-tag {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.item-action-badge {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #4ade80;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .contact-card-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .contacts-grid {
+    grid-template-columns: 1fr;
+  }
+  .rsvp-contacts-card {
+    padding: 20px 18px;
+  }
+}

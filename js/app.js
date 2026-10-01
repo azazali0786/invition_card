@@ -3,7 +3,7 @@
  * Features:
  * 1. Encrypted URL Guest Tokens (No plain text names in URL).
  * 2. Strict Guest Mode: "Create Guest Link" & bottom banner hidden for guests.
- * 3. WhatsApp Redirect: In Guest mode, redirects directly to Admin Family (8800646224).
+ * 3. WhatsApp Redirect: In Guest mode, redirects directly to Admin Family (9250161314).
  *    In Admin mode, shares the personalized invitation message with encrypted link.
  * 4. Dual-side Star Spreading Animation on "OPEN INVITATION".
  * 5. Event Itinerary, Countdown, Map, Calendar .ics & RSVP Duas Wall.
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const duasContainer = document.getElementById('duasContainer');
 
   // Configuration Constants
-  const HOST_FAMILY_PHONE = '918800646224'; // Host/Admin family WhatsApp (+91 8800646224)
-  const HOST_PASSCODES = ['8800', '8800646224', '1234', 'admin'];
+  const HOST_FAMILY_PHONE = '919250161314'; // Host/Admin family WhatsApp (+91 9250161314)
+  const HOST_PASSCODES = ['9250', '9250161314', '8800', '8800646224', '1234', 'admin'];
   const CIPHER_KEY = [0x5A, 0x3C, 0x7E, 0x29, 0x8B, 0x14, 0x6D, 0x4F];
 
   // State
@@ -315,14 +315,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------
-     6. WHATSAPP LOGIC (ADMIN SHARES VS GUEST CONTACTS 8800646224)
+     6. WHATSAPP LOGIC (ADMIN SHARES VS GUEST CONTACTS 9250161314)
      -------------------------------------------------- */
   function handleNavbarWhatsApp() {
     if (isAdmin) {
       // Admin: Open Generator modal or share
       openModal();
     } else {
-      // Guest: Redirect directly to Host Family at 8800646224
+      // Guest: Redirect directly to Host Family at 9250161314
       contactHostOnWhatsApp();
     }
   }
@@ -361,7 +361,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `🗺️ *Venue Map:* https://maps.google.com/?q=28.532343,77.445969\n\n` +
       `Kindly tap here to view your royal digital invitation with the interactive envelope:\n` +
       `${inviteUrl}\n\n` +
-      `With best compliments from Mo. Nosad & Alvi Family.\n` +
+      `📞 *Contact / RSVP:* 9250161314, 9837130784, 9311705692, 8010873456, 7428156376\n\n` +
+      `With best compliments from Mo. Naushad & Alvi Family.\n` +
       `Looking forward to your gracious presence and heartfelt Duas!`;
 
     const waLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
@@ -383,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const pass = prompt('Enter Host Admin Passcode (Hint: 8800 or phone):');
+      const pass = prompt('Enter Host Admin Passcode (Hint: 9250 or phone):');
       if (pass && HOST_PASSCODES.includes(pass.trim())) {
         sessionStorage.setItem('wedding_host_admin', 'true');
         isAdmin = true;
